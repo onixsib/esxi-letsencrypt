@@ -1,0 +1,43 @@
+#
+#  OpenSSL example configuration file.
+#
+
+# This definition stops the following lines choking if HOME isn’t
+# defined.
+HOME = .
+RANDFILE = $ENV::HOME/.rnd
+
+####################################################################
+[ req ]
+default_bits            = 4096
+default_md              = sha256
+default_keyfile         = letsencrypt.key
+distinguished_name      = req_distinguished_name
+extensions             = v3_ca
+req_extensions = v3_ca 
+
+[ v3_ca ]
+basicConstraints       = critical, CA:TRUE, pathlen:0
+subjectKeyIdentifier   = hash
+##authorityKeyIdentifier = keyid:always, issuer:always
+keyUsage               = keyCertSign, cRLSign
+nsCertType             = sslCA, emailCA, objCA
+
+[req_distinguished_name ]
+countryName                     = RU
+countryName_default             = RU
+countryName_min                 = 2
+countryName_max                 = 2 
+
+# write company name
+organizationName              = Company
+organizationName_default      = Company  
+
+# write department
+#organizationalUnitName          = department
+#organizationalUnitName_default  = department
+
+# write domain name which you service
+commonName                      = domain.com
+commonName_default             = lesstif’s Self Signed CA
+commonName_max                  = 64 
